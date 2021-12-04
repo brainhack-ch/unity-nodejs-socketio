@@ -342,3 +342,26 @@ Received Import Request.
 Start importing Assets/_material/CB_logo.png using Guid(562f7dbce1cee6c40827be9f37a37db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4656bdc364f28867aaca68e61709cc8') in 0.023253 seconds
   Import took 0.027284 seconds .
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001330 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.465 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1463 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 69.6 MB.
+System memory in use after: 69.7 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1976.
+Total: 3.630700 ms (FindLiveObjects: 0.317700 ms CreateObjectMapping: 0.118400 ms MarkObjects: 3.099300 ms  DeleteObjects: 0.092800 ms)
+
