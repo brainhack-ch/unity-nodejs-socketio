@@ -205,6 +205,7 @@
     <Compile Include="Assets\Plugin\Socket\WebSocket4Net\Default\Extensions.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Utilities\JavaScriptUtils.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Utilities\DynamicReflectionDelegateFactory.cs" />
+    <Compile Include="Assets\_scripts\_player_manager.cs" />
     <Compile Include="Assets\Plugin\Socket\Quobject\SocketIoClientDotNet\Client\ClientOn.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\CachedAttributeGetter.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\TraceJsonWriter.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Assets\Plugin\Socket\WebSocket4Net\Default\JsonExecutorWithSenderAndState.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Linq\JArray.cs" />
     <Compile Include="Assets\Plugin\Socket\WebSocket4Net\Command\Ping.cs" />
+    <Compile Include="Assets\_scripts\_game_manager.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\JsonWriterException.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\JsonContainerContract.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\DiagnosticsTraceWriter.cs" />
@@ -300,11 +302,12 @@
     <Compile Include="Assets\Plugin\Socket\Quobject\EngineIoClientDotNet\Modules\UTF8Exception.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Utilities\ReflectionDelegateFactory.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\SerializationBinderAdapter.cs" />
+    <Compile Include="Assets\_scripts\MoveTo.cs" />
     <Compile Include="Assets\Plugin\Socket\WebSocket4Net\Protocol\DraftHybi10DataReader.cs" />
-    <Compile Include="Assets\Plugin\Socket\WebSocket4Net\SuperSocket.ClientEngine\IBufferSetter.cs" />
     <Compile Include="Assets\Plugin\Socket\Quobject\EngineIoClientDotNet\Parser\Packet.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Linq\JsonPath\QueryFilter.cs" />
     <Compile Include="Assets\Plugin\Socket\Quobject\SocketIoClientDotNet\Parser\Packet2.cs" />
+    <Compile Include="Assets\Plugin\Socket\WebSocket4Net\SuperSocket.ClientEngine\IBufferSetter.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\OnErrorAttribute.cs" />
     <Compile Include="Assets\Plugin\Socket\WebSocket4Net\SuperSocket.ClientEngine\SslStreamTcpSession.cs" />
     <Compile Include="Assets\Plugin\Socket\WebSocket4Net\Command\Pong.cs" />
@@ -406,9 +409,6 @@
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Serialization\JsonSerializerInternalWriter.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\JsonConvert.cs" />
     <Compile Include="Assets\Plugin\Socket\Newtonsoft.Json\Linq\JRaw.cs" />
-    <Compile Include="Assets\Scripts\MoveTo.cs" />
-    <Compile Include="Assets\_player_manager.cs" />
-    <Compile Include="Assets\_game_manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
