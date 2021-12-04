@@ -69,9 +69,9 @@
     });
 
     function create_pnj() {
-        if (($('#UserName').val()).length > 0) {
-            socket.emit('chat', "newp" + " " + $('#UserName').val() + '#' + localStorage.getItem("UNS_unique_id") + " " + $('#UserColor').val());
-            localStorage.setItem("UNS_username", $('#UserName').val() + '#' + localStorage.getItem("UNS_unique_id"));
+        if (($('#UserName').val().replace(/\s/g, '')).length > 0) {
+            socket.emit('chat', "newp" + " " + $('#UserName').val().replace(/\s/g, '') + '#' + localStorage.getItem("UNS_unique_id") + " " + $('#UserColor').val());
+            localStorage.setItem("UNS_username", $('#UserName').val().replace(/\s/g, '') + '#' + localStorage.getItem("UNS_unique_id"));
             var myobj = document.getElementById("div_create_pnj");
             myobj.remove();
             load_rooms();
@@ -85,6 +85,11 @@
     function unload_rooms() {
         document.getElementById("Select_Facility").style.display = "none";
         document.getElementById("mri_room").style.display = "none";
+        document.getElementById("eeg_room").style.display = "none";
+        document.getElementById("vr_room").style.display = "none";
+        document.getElementById("neuromod_room").style.display = "none";
+        document.getElementById("csru_room").style.display = "none";
+        document.getElementById("methods_room").style.display = "none";
         document.getElementById("wait_moving_to_target").style.display = "none";
         document.getElementById("enigma_answer").style.display = "none";
         document.getElementById("enigma_mri1").style.display = "none";
@@ -92,11 +97,50 @@
         document.getElementById("enigma_mri3").style.display = "none";
         document.getElementById("enigma_mri4").style.display = "none";
         document.getElementById("enigma_mri5").style.display = "none";
+        document.getElementById("enigma_eeg1").style.display = "none";
+        document.getElementById("enigma_eeg2").style.display = "none";
+        document.getElementById("enigma_eeg3").style.display = "none";
+        document.getElementById("enigma_eeg4").style.display = "none";
+        document.getElementById("enigma_eeg5").style.display = "none";
+        document.getElementById("enigma_vr1").style.display = "none";
+        document.getElementById("enigma_vr2").style.display = "none";
+        document.getElementById("enigma_vr3").style.display = "none";
+        document.getElementById("enigma_neuromod1").style.display = "none";
+        document.getElementById("enigma_neuromod2").style.display = "none";
+        document.getElementById("enigma_csru1").style.display = "none";
+        document.getElementById("enigma_csru2").style.display = "none";
+        document.getElementById("enigma_methods1").style.display = "none";
+        document.getElementById("enigma_methods2").style.display = "none";
+        document.getElementById("enigma_methods3").style.display = "none";
+        document.getElementById("enigma_methods4").style.display = "none";
+        document.getElementById("enigma_methods5").style.display = "none";
+        document.getElementById("enigma_methods6").style.display = "none";
+        document.getElementById("enigma_methods7").style.display = "none";
     }
 
     function load_mri_room() {
         unload_rooms();
         document.getElementById("mri_room").style.display = "block";
+    }
+    function load_eeg_room() {
+        unload_rooms();
+        document.getElementById("eeg_room").style.display = "block";
+    }
+    function load_vr_room() {
+        unload_rooms();
+        document.getElementById("vr_room").style.display = "block";
+    }
+    function load_neuromod_room() {
+        unload_rooms();
+        document.getElementById("neuromod_room").style.display = "block";
+    }
+    function load_csru_room() {
+        unload_rooms();
+        document.getElementById("csru_room").style.display = "block";
+    }
+    function load_methods_room() {
+        unload_rooms();
+        document.getElementById("methods_room").style.display = "block";
     }
 
     function load_mri_room_1() {
@@ -113,6 +157,63 @@
     }
     function load_mri_room_5() {
         socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "mri5");
+    }
+    function load_eeg_room_1() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "eeg1");
+    }
+    function load_eeg_room_2() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "eeg2");
+    }
+    function load_eeg_room_3() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "eeg3");
+    }
+    function load_eeg_room_4() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "eeg4");
+    }
+    function load_eeg_room_5() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "eeg5");
+    }
+    function load_vr_room_1() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "vr1");
+    }
+    function load_vr_room_2() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "vr2");
+    }
+    function load_vr_room_3() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "vr3");
+    }
+    function load_neuromod_room_1() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "neuromod1");
+    }
+    function load_neuromod_room_2() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "neuromod2");
+    }
+    function load_csru_room_1() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "csru1");
+    }
+    function load_csru_room_2() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "csru2");
+    }
+    function load_methods_room_1() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods1");
+    }
+    function load_methods_room_2() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods2");
+    }
+    function load_methods_room_3() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods3");
+    }
+    function load_methods_room_4() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods4");
+    }
+    function load_methods_room_5() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods5");
+    }
+    function load_methods_room_6() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods6");
+    }
+    function load_methods_room_7() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "methods7");
     }
 
     function wait_moving_to_target(s_room) {
@@ -137,6 +238,63 @@
             case 'mri5':
                 document.getElementById("placeholder_targeted_room").innerHTML = "MRI final boss room 2";
                 break;
+            case 'eeg1':
+                document.getElementById("placeholder_targeted_room").innerHTML = "eeg booth 1";
+                break;
+            case 'eeg2':
+                document.getElementById("placeholder_targeted_room").innerHTML = "eeg booth 2";
+                break;
+            case 'eeg3':
+                document.getElementById("placeholder_targeted_room").innerHTML = "eeg booth 3";
+                break;
+            case 'eeg4':
+                document.getElementById("placeholder_targeted_room").innerHTML = "eeg booth 4";
+                break;
+            case 'eeg5':
+                document.getElementById("placeholder_targeted_room").innerHTML = "eeg final boss room";
+                break;
+            case 'vr1':
+                document.getElementById("placeholder_targeted_room").innerHTML = "vr room";
+                break;
+            case 'vr2':
+                document.getElementById("placeholder_targeted_room").innerHTML = "ar room";
+                break;
+            case 'vr3':
+                document.getElementById("placeholder_targeted_room").innerHTML = "xr room";
+                break;
+            case 'neuromod1':
+                document.getElementById("placeholder_targeted_room").innerHTML = "neuromod tms room";
+                break;
+            case 'neuromod2':
+                document.getElementById("placeholder_targeted_room").innerHTML = "neuromod boss room";
+                break;
+            case 'csru1':
+                document.getElementById("placeholder_targeted_room").innerHTML = "csru bedroom";
+                break;
+            case 'csru2':
+                document.getElementById("placeholder_targeted_room").innerHTML = "csru boss room";
+                break;
+            case 'methods1':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods worker room 1";
+                break;
+            case 'methods2':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods worker room 2";
+                break;
+            case 'methods3':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods worker room 3";
+                break;
+            case 'methods4':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods worker room 4";
+                break;
+            case 'methods5':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods worker room 5";
+                break;
+            case 'methods6':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods worker room 6";
+                break;
+            case 'methods7':
+                document.getElementById("placeholder_targeted_room").innerHTML = "methods final boss room";
+                break;
         }
     }
 
@@ -159,6 +317,57 @@
                 break;
             case 'mri5':
                 document.getElementById("enigma_mri5").style.display = "block";
+                break;
+            case 'eeg1':
+                document.getElementById("enigma_eeg1").style.display = "block";
+                break;
+            case 'eeg2':
+                document.getElementById("enigma_eeg2").style.display = "block";
+                break;
+            case 'eeg3':
+                document.getElementById("enigma_eeg3").style.display = "block";
+                break;
+            case 'eeg4':
+                document.getElementById("enigma_eeg4").style.display = "block";
+                break;
+            case 'eeg5':
+                document.getElementById("enigma_eeg5").style.display = "block";
+                break;
+            case 'vr1':
+                document.getElementById("enigma_vr1").style.display = "block";
+                break;
+            case 'vr2':
+                document.getElementById("enigma_vr2").style.display = "block";
+                break;
+            case 'vr3':
+                document.getElementById("enigma_vr3").style.display = "block";
+                break;
+            case 'neuromod1':
+                document.getElementById("enigma_neuromod1").style.display = "block";
+                break;
+            case 'neuromod2':
+                document.getElementById("enigma_neuromod2").style.display = "block";
+                break;
+            case 'csru1':
+                document.getElementById("enigma_csru1").style.display = "block";
+                break;
+            case 'csru2':
+                document.getElementById("enigma_csru2").style.display = "block";
+                break;
+            case 'methods1':
+                document.getElementById("enigma_methods1").style.display = "block";
+                break;
+            case 'methods2':
+                document.getElementById("enigma_methods2").style.display = "block";
+                break;
+            case 'methods3':
+                document.getElementById("enigma_methods3").style.display = "block";
+                break;
+            case 'methods4':
+                document.getElementById("enigma_methods4").style.display = "block";
+                break;
+            case 'methods5':
+                document.getElementById("enigma_methods5").style.display = "block";
                 break;
         }
     }
@@ -207,16 +416,22 @@
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="load_mri_room();"><img src="ressources/HNP_MRI_2_2.png" width="50%" /><br />MRI<br /><br /></td>
-                    <td><img src="ressources/HNP_EEG_2_2.png" width="50%" /><br />EEG<br /><br /></td>
+                    <!--<td onClick="load_mri_room();"><img src="ressources/HNP_MRI_2_2.png" width="50%" /><br />MRI<br /><br /></td>-->
+                    <td onClick="load_mri_room();"><img src="ressources/HNP_MRI_short.jpg" width="50%" /><br />Magnetic Resonnance Imaging<br /><br /></td>
+                    <!--<td><img src="ressources/HNP_EEG_2_2.png" width="50%" /><br />EEG<br /><br /></td>-->
+                    <td onClick="load_eeg_room();"><img src="ressources/HNP_EEG_short.jpg" width="50%" /><br />ElectroEncephaloGraphy<br /><br /></td>
                 </tr>
                 <tr>
-                    <td><img src="ressources/HNP_VR_2.png" width="50%" /><br />VR<br /><br /></td>
-                    <td><img src="ressources/HNP_neuromod_2.png" width="50%" /><br />Neuromod<br /><br /></td>
+                    <!--<td><img src="ressources/HNP_VR_2.png" width="50%" /><br />VR<br /><br /></td>-->
+                    <td onClick="load_vr_room();"><img src="ressources/HNP_VR.jpg" width="50%" /><br />VR<br /><br /></td>
+                    <!--<td><img src="ressources/HNP_neuromod_2.png" width="50%" /><br />Neuromod<br /><br /></td>-->
+                    <td onClick="load_neuromod_room();"><img src="ressources/HNP_neuromod.jpg" width="50%" /><br />Neuromodulation<br /><br /></td>
                 </tr>
                 <tr>
-                    <td><img src="ressources/HNP_CSRU_2_2.png" width="50%" /><br />CSRU<br /><br /></td>
-                    <td><img src="ressources/HNP_method_2.png" width="50%" /><br />Method<br /><br /></td>
+                    <!--<td><img src="ressources/HNP_CSRU_2_2.png" width="50%" /><br />CSRU<br /><br /></td>-->
+                    <td onClick="load_csru_room();"><img src="ressources/HNP_CSRU_short.jpg" width="50%" /><br />Clinical & Sleep Research Unit<br /><br /></td>
+                    <!--<td><img src="ressources/HNP_method_2.png" width="50%" /><br />Method<br /><br /></td>-->
+                    <td onClick="load_methods_room();"><img src="ressources/HNP_methods.jpg" width="50%" /><br />Method & data<br /><br /></td>
                 </tr>
             </table>
             <p></p>
@@ -225,7 +440,7 @@
 
     <div class="center" id="mri_room" style="display: none;">
         <center>
-            <p><b>Select a MRI room.</b></p>
+            <p><b>Select a mri room.</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
@@ -242,6 +457,113 @@
                 </tr>
                 <tr>
                     <td onClick="load_mri_room_5();" id="td_load_mri_room_5">MRI room 5<br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="eeg_room" style="display: none;">
+        <center>
+            <p><b>Select an eeg room.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_eeg_room_1();" id="td_load_eeg_room_1">eeg room 1<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_eeg_room_2();" id="td_load_eeg_room_2">eeg room 2<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_eeg_room_3();" id="td_load_eeg_room_3">eeg room 3<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_eeg_room_4();" id="td_load_eeg_room_4">eeg room 4<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_eeg_room_5();" id="td_load_eeg_room_5">eeg room 5<br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="vr_room" style="display: none;">
+        <center>
+            <p><b>Select a vr room.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_vr_room_1();" id="td_load_vr_room_1">vr room 1<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_vr_room_2();" id="td_load_vr_room_2">vr room 2<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_vr_room_3();" id="td_load_vr_room_3">vr room 3<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="neuromod_room" style="display: none;">
+        <center>
+            <p><b>Select a neuromod room.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_neuromod_room_1();" id="td_load_neuromod_room_1">neuromod room 1<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_neuromod_room_2();" id="td_load_neuromod_room_2">neuromod room 2<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="csru_room" style="display: none;">
+        <center>
+            <p><b>Select a csru room.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_csru_room_1();" id="td_load_csru_room_1">csru room 1<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_csru_room_2();" id="td_load_csru_room_2">csru room 2<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="methods_room" style="display: none;">
+        <center>
+            <p><b>Select a methods & data room.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_methods_room_1();" id="td_load_methods_room_1">methods room 1<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_methods_room_2();" id="td_load_methods_room_2">methods room 2<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_methods_room_3();" id="td_load_methods_room_3">methods room 3<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_methods_room_4();" id="td_load_methods_room_4">methods room 4<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_methods_room_5();" id="td_load_methods_room_5">methods room 5<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_methods_room_6();" id="td_load_methods_room_6">methods room 6<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_methods_room_7();" id="td_load_methods_room_7">methods room 7<br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -301,10 +623,10 @@
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', 'MRI tends to be very good at imaging soft tissues such as the brain, while a CT scan (which uses X rays) tends to be better at imaging hard tissues such as bones. That’s why you typically have a CT for a fracture but MRI for ligament problems.', 'td_load_mri_room_3');">True<br /><br /></td>
+                    <td onClick="display_enigma_answer('Correct', 'MRI tends to be very good at imaging soft tissues such as the brain, while a CT scan (which uses X rays) tends to be better at imaging hard tissues such as bones. That is why you typically have a CT for a fracture but MRI for ligament problems.', 'td_load_mri_room_3');">True<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', 'MRI tends to be very good at imaging soft tissues such as the brain, while a CT scan (which uses X rays) tends to be better at imaging hard tissues such as bones. That’s why you typically have a CT for a fracture but MRI for ligament problems.','td_load_mri_room_3');">False<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', 'MRI tends to be very good at imaging soft tissues such as the brain, while a CT scan (which uses X rays) tends to be better at imaging hard tissues such as bones. That is why you typically have a CT for a fracture but MRI for ligament problems.','td_load_mri_room_3');">False<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -319,15 +641,15 @@
                 <tr>
                     <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_4');">White<br /><br /></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td onClick="display_enigma_answer('Correct', '', 'td_load_mri_room_4');">Dark grey<br /><br /></td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_4');">Black<br /><br /></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_4');">Light grey<br /><br /></td>
-                </tr>
+                </tr>-->
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <button type="button" onclick="load_rooms()">Go back to facility selection</button>
@@ -355,6 +677,394 @@
             <button type="button" onclick="load_rooms()">Go back to facility selection</button>
         </center>
     </div>
+
+
+    <div class="center" id="enigma_eeg1" style="display: none;">
+        <center>
+            <p><b>The placement of the sensors on the cranium in order to take EEG is called _______</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'The placement of the electrodes on the cranium in order to take the EEG is the montage. The placement can involve 21 electrodes. In order to ensure the correct placement of the electrodes, a cap with perforations at the correct locations is used. This cap is the cranial cap or the montage cap. When taking the EEG, the sensors or the electrodes are plugged in the respective perforations and the signal is acquired.','td_load_eeg_room_1');">Montage<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The placement of the electrodes on the cranium in order to take the EEG is the montage. The placement can involve 21 electrodes. In order to ensure the correct placement of the electrodes, a cap with perforations at the correct locations is used. This cap is the cranial cap or the montage cap. When taking the EEG, the sensors or the electrodes are plugged in the respective perforations and the signal is acquired. ','td_load_eeg_room_1');">Cranial Cap<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The placement of the electrodes on the cranium in order to take the EEG is the montage. The placement can involve 21 electrodes. In order to ensure the correct placement of the electrodes, a cap with perforations at the correct locations is used. This cap is the cranial cap or the montage cap. When taking the EEG, the sensors or the electrodes are plugged in the respective perforations and the signal is acquired. ','td_load_eeg_room_1');">Electrode Placement<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The placement of the electrodes on the cranium in order to take the EEG is the montage. The placement can involve 21 electrodes. In order to ensure the correct placement of the electrodes, a cap with perforations at the correct locations is used. This cap is the cranial cap or the montage cap. When taking the EEG, the sensors or the electrodes are plugged in the respective perforations and the signal is acquired. ','td_load_eeg_room_1');">Electrode Cap<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_eeg2" style="display: none;">
+        <center>
+            <p><b>The electrode gel is used to _________ </b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'The electrodes that acquire the signal can cause damage to the skin as well. This is because while acquiring the signal, there is heat production which can cause burning if the signal acquisition is of a long duration. Thus, the electrode gel is used to reduce the skin resistance so that prolonged signal acquisition can take place.','td_load_eeg_room_2');">Reduce skin resistance<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The electrodes that acquire the signal can cause damage to the skin as well. This is because while acquiring the signal, there is heat production which can cause burning if the signal acquisition is of a long duration. Thus, the electrode gel is used to reduce the skin resistance so that prolonged signal acquisition can take place.','td_load_eeg_room_2');">Increase skin resistance<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The electrodes that acquire the signal can cause damage to the skin as well. This is because while acquiring the signal, there is heat production which can cause burning if the signal acquisition is of a long duration. Thus, the electrode gel is used to reduce the skin resistance so that prolonged signal acquisition can take place.','td_load_eeg_room_2');">Moisturize the skin<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The electrodes that acquire the signal can cause damage to the skin as well. This is because while acquiring the signal, there is heat production which can cause burning if the signal acquisition is of a long duration. Thus, the electrode gel is used to reduce the skin resistance so that prolonged signal acquisition can take place.','td_load_eeg_room_2');">Cause skin slaking<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_eeg3" style="display: none;">
+        <center>
+            <p><b>When a person moves his arms and legs, the EEG is generated from _______</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The brain is divided into various areas called the Broca areas. These areas process and control the various actions of the body. Area 4 is situated in the Frontal Lobe and this area is responsible for the motor functions of the body. It is the highest center for motor activity.','td_load_eeg_room_3');">Cerebellum<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The brain is divided into various areas called the Broca areas. These areas process and control the various actions of the body. Area 4 is situated in the Frontal Lobe and this area is responsible for the motor functions of the body. It is the highest center for motor activity.','td_load_eeg_room_3');">Homonculus<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The brain is divided into various areas called the Broca areas. These areas process and control the various actions of the body. Area 4 is situated in the Frontal Lobe and this area is responsible for the motor functions of the body. It is the highest center for motor activity.','td_load_eeg_room_3');">Visual Cortex<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'The brain is divided into various areas called the Broca areas. These areas process and control the various actions of the body. Area 4 is situated in the Frontal Lobe and this area is responsible for the motor functions of the body. It is the highest center for motor activity.','td_load_eeg_room_3');">Motor Cortex<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+    <div class="center" id="enigma_eeg4" style="display: none;">
+        <center>
+            <p><b>Which wave can help point out the place of a brain tumor? </b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'Delta waves have a frequency of less than 4 Hz. When a person is at rest, they will normally give alpha waves whose lowest range is 8 Hz. Thus, if there is a tumor formation, we can assume that a tumour is blocking the signal and so the electrode at the specific region reads a delta wave instead of an alpha wave when even though the other parts of the brain is giving an alpha wave.','td_load_eeg_room_4');">Alpha waves<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'Delta waves have a frequency of less than 4 Hz. When a person is at rest, they will normally give alpha waves whose lowest range is 8 Hz. Thus, if there is a tumor formation, we can assume that a tumour is blocking the signal and so the electrode at the specific region reads a delta wave instead of an alpha wave when even though the other parts of the brain is giving an alpha wave.','td_load_eeg_room_4');">Veta waves<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'Delta waves have a frequency of less than 4 Hz. When a person is at rest, they will normally give alpha waves whose lowest range is 8 Hz. Thus, if there is a tumor formation, we can assume that a tumour is blocking the signal and so the electrode at the specific region reads a delta wave instead of an alpha wave when even though the other parts of the brain is giving an alpha wave.','td_load_eeg_room_4');">Delta waves<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'Delta waves have a frequency of less than 4 Hz. When a person is at rest, they will normally give alpha waves whose lowest range is 8 Hz. Thus, if there is a tumor formation, we can assume that a tumour is blocking the signal and so the electrode at the specific region reads a delta wave instead of an alpha wave when even though the other parts of the brain is giving an alpha wave.','td_load_eeg_room_4');">Gamma waves<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_eeg5" style="display: none;">
+        <center>
+            <p><b>The frequency of the waves acquired when the person is in an alert and wakeful state is _______ </b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'When a person is alert and properly awake, the waves obtained are beta waves. These waves range from 13 - 20 Hz. The alpha waves (8 - 13 Hz) are obtained when a person is asleep. Theta waves (4 - 8 Hz) are found when the person is sitting idle or in children. Sometimes, these waves are generated when the person is about to fall asleep.  Gamma waves (> 30 Hz) are found when a person is doing an intense mental activity or is multitasking. ','td_load_eeg_room_5');">4 - 8 Hz<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'When a person is alert and properly awake, the waves obtained are beta waves. These waves range from 13 - 20 Hz. The alpha waves (8 - 13 Hz) are obtained when a person is asleep. Theta waves (4 - 8 Hz) are found when the person is sitting idle or in children. Sometimes, these waves are generated when the person is about to fall asleep.  Gamma waves (> 30 Hz) are found when a person is doing an intense mental activity or is multitasking. ','td_load_eeg_room_5');">8 - 13 Hz<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'When a person is alert and properly awake, the waves obtained are beta waves. These waves range from 13 - 20 Hz. The alpha waves (8 - 13 Hz) are obtained when a person is asleep. Theta waves (4 - 8 Hz) are found when the person is sitting idle or in children. Sometimes, these waves are generated when the person is about to fall asleep.  Gamma waves (> 30 Hz) are found when a person is doing an intense mental activity or is multitasking. ','td_load_eeg_room_5');">13 - 30 Hz<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'When a person is alert and properly awake, the waves obtained are beta waves. These waves range from 13 - 20 Hz. The alpha waves (8 - 13 Hz) are obtained when a person is asleep. Theta waves (4 - 8 Hz) are found when the person is sitting idle or in children. Sometimes, these waves are generated when the person is about to fall asleep.  Gamma waves (> 30 Hz) are found when a person is doing an intense mental activity or is multitasking. ','td_load_eeg_room_5');">> 30 Hz<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+
+
+
+
+    <div class="center" id="enigma_vr1" style="display: none;">
+        <center>
+            <p><b>A type of VR environment in which subjects are visually isolated from the real environment.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'In immersive VR, subjects are visually isolated from the real environment. A virtual scene is responding to the subjects actions.','td_load_vr_room_1');">Immersive<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'In immersive VR, subjects are visually isolated from the real environment. A virtual scene is responding to the subjects actions.','td_load_vr_room_1');">Semi immersive<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'In immersive VR, subjects are visually isolated from the real environment. A virtual scene is responding to the subjects actions.','td_load_vr_room_1');">Non immersive<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'In immersive VR, subjects are visually isolated from the real environment. A virtual scene is responding to the subjects actions.','td_load_vr_room_1');">Augmented<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_vr2" style="display: none;">
+        <center>
+            <p><b>In immersive technology, what does MR stand for?  </b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_vr_room_2');">Mixed Reality<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_vr_room_2');">Measured Reality<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_vr_room_2');">Mirrored Reality<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_vr_room_2');">More Reality<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_vr3" style="display: none;">
+        <center>
+            <p><b>Which organisation used augmented reality as a navigation tool in the 1990s? </b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_vr_room_3');">NASA<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_vr_room_3');">British Royal Navy<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_vr_room_3');">United States Air Force<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_vr_room_3');">MI6<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+
+
+
+    <div class="center" id="enigma_neuromod1" style="display: none;">
+        <center>
+            <p><b>You can make someone see flashes of lights with TMS</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_neuromod_room_1');">TRUE<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_neuromod_room_1');">FALSE<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_neuromod2" style="display: none;">
+        <center>
+            <p><b>Between electric and magnetic field, which one better penetrates the brain ?</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_neuromod_room_2');">Electric field<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_neuromod_room_2');">Mangetic field<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+    <div class="center" id="enigma_csru1" style="display: none;">
+        <center>
+            <p><b>Some Brainhack participants once slept at the sleep lab ?</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_csru_room_1');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_csru_room_1');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_csru2" style="display: none;">
+        <center>
+            <p><b>EEG can be used to differentiate between the different sleep phases (e.g. light sleep, deep sleep)</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_csru_room_2');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_csru_room_2');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+
+
+
+    <div class="center" id="enigma_methods1" style="display: none;">
+        <center>
+            <p><b>Most research studies make it easy for other researchers to reproduce their findings</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_1');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_1');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_methods2" style="display: none;">
+        <center>
+            <p><b></b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_2');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_2');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_methods3" style="display: none;">
+        <center>
+            <p><b></b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_3');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_3');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_methods4" style="display: none;">
+        <center>
+            <p><b></b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_4');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_4');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_methods5" style="display: none;">
+        <center>
+            <p><b></b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_5');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_5');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_methods6" style="display: none;">
+        <center>
+            <p><b></b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_6');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_6');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_methods7" style="display: none;">
+        <center>
+            <p><b>Which Python Enhancement Proposal (PEP) caused Python's creator Guido van Rossum to give up his status llanguage's 'Benevolent dictator for life'</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_7');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_7');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+
+    <!--<div class="center" id="enigma_tmp" style="display: none;">
+        <center>
+            <p><b></b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_tmp_room_1');"><br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>-->
+
+
+
+
     <div class="center" id="enigma_answer" style="display: none;">
         <center>
             <b><p id="placeholder_correctness">Placeholder</p></b>
@@ -370,6 +1080,6 @@
     </div>
 
 
-    <ul id="messages"></ul>
+    <ul id="messages" hidden=""></ul>
 </body>
 </html>
