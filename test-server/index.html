@@ -1,0 +1,375 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      /** { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }*/
+        .center {
+            margin: auto;
+            width: 80%;
+            border: 5px solid #FF0000;
+            padding: 10px;
+        }
+        /*table, th, td {
+            border: 1px solid black;
+        }*/
+        td {
+            text-align: center;
+        }
+    </style>
+  </head>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    if (localStorage.getItem("UNS_unique_id") === null) {
+        localStorage.setItem("UNS_unique_id", Math.floor(Math.random() * 10001));
+    }
+    var socket = io();
+    $('form').submit(function () {
+        socket.emit('chat', $('#m').val());
+        $('#m').val('');
+        return false;
+    });
+    socket.on('chat', function (data) {
+        $('#messages').append($('<li>').text("user#" + data.id + ": " + data.msg));
+
+        const splitted_array = data.msg.split(" ");
+
+        switch (splitted_array[0]) {
+            case 'targeted':
+                if (splitted_array[1] == localStorage.getItem("UNS_username")) {
+                    wait_moving_to_target(splitted_array[2]);
+                }
+                break;
+            case 'reached':
+                if (splitted_array[1] == localStorage.getItem("UNS_username")) {
+                    display_enigma(splitted_array[2]);
+                }
+                break;
+        }
+
+    });
+
+    $("input#UserName").on({
+        keydown: function (e) {
+            if (e.which === 32)
+                return false;
+        },
+        change: function () {
+            this.value = this.value.replace(/\s/g, "");
+        }
+    });
+
+    function create_pnj() {
+        if (($('#UserName').val()).length > 0) {
+            socket.emit('chat', "newp" + " " + $('#UserName').val() + '#' + localStorage.getItem("UNS_unique_id") + " " + $('#UserColor').val());
+            localStorage.setItem("UNS_username", $('#UserName').val() + '#' + localStorage.getItem("UNS_unique_id"));
+            var myobj = document.getElementById("div_create_pnj");
+            myobj.remove();
+            load_rooms();
+        }
+    }
+
+    function load_rooms() {
+        unload_rooms();
+        document.getElementById("Select_Facility").style.display = "block";
+    }
+    function unload_rooms() {
+        document.getElementById("Select_Facility").style.display = "none";
+        document.getElementById("mri_room").style.display = "none";
+        document.getElementById("wait_moving_to_target").style.display = "none";
+        document.getElementById("enigma_answer").style.display = "none";
+        document.getElementById("enigma_mri1").style.display = "none";
+        document.getElementById("enigma_mri2").style.display = "none";
+        document.getElementById("enigma_mri3").style.display = "none";
+        document.getElementById("enigma_mri4").style.display = "none";
+        document.getElementById("enigma_mri5").style.display = "none";
+    }
+
+    function load_mri_room() {
+        unload_rooms();
+        document.getElementById("mri_room").style.display = "block";
+    }
+
+    function load_mri_room_1() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "mri1");
+    }
+    function load_mri_room_2() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "mri2");
+    }
+    function load_mri_room_3() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "mri3");
+    }
+    function load_mri_room_4() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "mri4");
+    }
+    function load_mri_room_5() {
+        socket.emit('chat', "mvto" + " " + localStorage.getItem("UNS_username") + " " + "mri5");
+    }
+
+    function wait_moving_to_target(s_room) {
+        unload_rooms();
+        document.getElementById("wait_moving_to_target").style.display = "block";
+
+        localStorage.setItem("UNS_room", s_room);
+
+        switch (s_room) {
+            case 'mri1':
+                document.getElementById("placeholder_targeted_room").innerHTML = "MRI mock scanner room";
+                break;
+            case 'mri2':
+                document.getElementById("placeholder_targeted_room").innerHTML = "MRI changing room";
+                break;
+            case 'mri3':
+                document.getElementById("placeholder_targeted_room").innerHTML = "MRI robotic room";
+                break;
+            case 'mri4':
+                document.getElementById("placeholder_targeted_room").innerHTML = "MRI final boss room";
+                break;
+            case 'mri5':
+                document.getElementById("placeholder_targeted_room").innerHTML = "MRI final boss room 2";
+                break;
+        }
+    }
+
+
+    function display_enigma(s_room) {
+        unload_rooms();
+
+        switch (s_room) {
+            case 'mri1':
+                document.getElementById("enigma_mri1").style.display = "block";
+                break;
+            case 'mri2':
+                document.getElementById("enigma_mri2").style.display = "block";
+                break;
+            case 'mri3':
+                document.getElementById("enigma_mri3").style.display = "block";
+                break;
+            case 'mri4':
+                document.getElementById("enigma_mri4").style.display = "block";
+                break;
+            case 'mri5':
+                document.getElementById("enigma_mri5").style.display = "block";
+                break;
+        }
+    }
+
+    function display_enigma_answer(correctness, hint, id_elem) {
+        unload_rooms();
+        document.getElementById("enigma_answer").style.display = "block";
+
+        document.getElementById("placeholder_correctness").innerHTML = correctness;
+        document.getElementById("placeholder_hint").innerHTML = hint;
+
+        if (correctness == "Correct") {
+            socket.emit('chat', "oktier" + " " + localStorage.getItem("UNS_username") + " " + localStorage.getItem("UNS_room"));
+            document.getElementById(id_elem).style = 'color:#00FF00';
+            document.getElementById(id_elem).onclick = '';
+        }
+        else {
+            socket.emit('chat', "npctier" + " " + localStorage.getItem("UNS_username") + " " + localStorage.getItem("UNS_room"));
+            document.getElementById(id_elem).style = 'color:#FF0000';
+            document.getElementById(id_elem).onclick = '';
+        }
+    }
+
+</script>
+
+<body>
+    <br />
+    <div class="center" id="div_create_pnj">
+        <center>
+            <p><b>This is your old school character creator.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <label for="UserName">Username: </label>
+            <input id="UserName" maxlength="10"></input>
+            <p></p>
+            <label for="UserColor">Color: </label>
+            <input type="color" id="UserColor" value="#ffffff">
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="create_pnj()">Enter the Virtual Campus Biotech</button>
+            <p></p>
+        </center>
+    </div>
+
+    <div class="center" id="Select_Facility" style="display: none;">
+        <center>
+            <p><b>Select a facility.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_mri_room();"><img src="ressources/HNP_MRI_2_2.png" width="50%" /><br />MRI<br /><br /></td>
+                    <td><img src="ressources/HNP_EEG_2_2.png" width="50%" /><br />EEG<br /><br /></td>
+                </tr>
+                <tr>
+                    <td><img src="ressources/HNP_VR_2.png" width="50%" /><br />VR<br /><br /></td>
+                    <td><img src="ressources/HNP_neuromod_2.png" width="50%" /><br />Neuromod<br /><br /></td>
+                </tr>
+                <tr>
+                    <td><img src="ressources/HNP_CSRU_2_2.png" width="50%" /><br />CSRU<br /><br /></td>
+                    <td><img src="ressources/HNP_method_2.png" width="50%" /><br />Method<br /><br /></td>
+                </tr>
+            </table>
+            <p></p>
+        </center>
+    </div>
+
+    <div class="center" id="mri_room" style="display: none;">
+        <center>
+            <p><b>Select a MRI room.</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="load_mri_room_1();" id="td_load_mri_room_1">MRI room 1<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_mri_room_2();" id="td_load_mri_room_2">MRI room 2<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_mri_room_3();" id="td_load_mri_room_3">MRI room 3<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_mri_room_4();" id="td_load_mri_room_4">MRI room 4<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="load_mri_room_5();" id="td_load_mri_room_5">MRI room 5<br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+    <div class="center" id="wait_moving_to_target" style="display: none;">
+        <center>
+            <p><b>Wait... You are moving to </b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <b><p id="placeholder_targeted_room">Placeholder</p></b>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+
+    <div class="center" id="enigma_mri1" style="display: none;">
+        <center>
+            <p><b>MRI is using X-Rays</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'The MRI is based on magnetic resonance and relies on a big magnet, it has no ionizing radiations','td_load_mri_room_1');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'The MRI is based on magnetic resonance and relies on a big magnet, it has no ionizing radiations','td_load_mri_room_1');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_mri2" style="display: none;">
+        <center>
+            <p><b>Thing I cannot take inside the scanner</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'Pacemaker, nerve stimulator or another implanted medical device that contains metal can be damaged by an MRI scan. This powerful magnet can trigger changes in the settings.','td_load_mri_room_2');">Gold ring<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'Pacemaker, nerve stimulator or another implanted medical device that contains metal can be damaged by an MRI scan. This powerful magnet can trigger changes in the settings.','td_load_mri_room_2');">Plastic bracelet<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'Pacemaker, nerve stimulator or another implanted medical device that contains metal can be damaged by an MRI scan. This powerful magnet can trigger changes in the settings.', 'td_load_mri_room_2');">A coin<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_mri3" style="display: none;">
+        <center>
+            <p><b>MRI is better than CT to look at details in the brain</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', 'MRI tends to be very good at imaging soft tissues such as the brain, while a CT scan (which uses X rays) tends to be better at imaging hard tissues such as bones. That’s why you typically have a CT for a fracture but MRI for ligament problems.', 'td_load_mri_room_3');">True<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', 'MRI tends to be very good at imaging soft tissues such as the brain, while a CT scan (which uses X rays) tends to be better at imaging hard tissues such as bones. That’s why you typically have a CT for a fracture but MRI for ligament problems.','td_load_mri_room_3');">False<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_mri4" style="display: none;">
+        <center>
+            <p><b>What colour is water in a T1 weighted MRI scan?</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_4');">White<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '', 'td_load_mri_room_4');">Dark grey<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_4');">Black<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_4');">Light grey<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_mri5" style="display: none;">
+        <center>
+            <p><b>Which of these are different colours on T1 and T2 weighted MRI images?</b></p>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <table style="width: 100%; table-layout: fixed;">
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_5');">Cortical bone<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_5');">Flowing blood<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '', 'td_load_mri_room_5');">Fat<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_mri_room_5');">None of the listed<br /><br /></td>
+                </tr>
+            </table>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+    <div class="center" id="enigma_answer" style="display: none;">
+        <center>
+            <b><p id="placeholder_correctness">Placeholder</p></b>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <b><p id="placeholder_hint">Placeholder</p></b>
+            <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
+            <button type="button" onclick="load_rooms()">Go back to facility selection</button>
+        </center>
+    </div>
+
+    <div>
+
+    </div>
+
+
+    <ul id="messages"></ul>
+</body>
+</html>
