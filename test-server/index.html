@@ -369,6 +369,12 @@
             case 'methods5':
                 document.getElementById("enigma_methods5").style.display = "block";
                 break;
+            case 'methods6':
+                document.getElementById("enigma_methods6").style.display = "block";
+                break;
+            case 'methods7':
+                document.getElementById("enigma_methods7").style.display = "block";
+                break;
         }
     }
 
@@ -887,10 +893,10 @@
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', '','td_load_neuromod_room_2');">Electric field<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', 'The magnetic field. There is little resistance to that field from the skull and skin. In contrast, the skull and soft tissue surrounding the brain shunt away a majority of applied electric currents. Hence TMS uses a magnetic field as an intermediary to generate electric fields inside the brain.','td_load_neuromod_room_2');">Electric field<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', '','td_load_neuromod_room_2');">Mangetic field<br /><br /></td>
+                    <td onClick="display_enigma_answer('Correct', 'The magnetic field. There is little resistance to that field from the skull and skin. In contrast, the skull and soft tissue surrounding the brain shunt away a majority of applied electric currents. Hence TMS uses a magnetic field as an intermediary to generate electric fields inside the brain..','td_load_neuromod_room_2');">Mangetic field<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -916,14 +922,20 @@
     </div>
     <div class="center" id="enigma_csru2" style="display: none;">
         <center>
-            <p><b>EEG can be used to differentiate between the different sleep phases (e.g. light sleep, deep sleep)</b></p>
+            <p><b>A person whose brain waves contain high-amplitude delta waves is most likely</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', '','td_load_csru_room_2');">True<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_csru_room_2');">In stage 1 of slow-wave sleep<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', '','td_load_csru_room_2');">False<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_csru_room_2');">In stage 2 of slow-wave sleep<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_csru_room_2');">In either stage 3 or stage 4 of slow-wave sleep<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_csru_room_2');">Dreaming<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -952,7 +964,7 @@
     </div>
     <div class="center" id="enigma_methods2" style="display: none;">
         <center>
-            <p><b></b></p>
+            <p><b>Nowadays researchers in neuroscience have a compulsory computer science training and are therefore very fluent in programming languages such as Python</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
@@ -968,7 +980,7 @@
     </div>
     <div class="center" id="enigma_methods3" style="display: none;">
         <center>
-            <p><b></b></p>
+            <p><b>The methods & data facility manages the data on all computers at Campus Biotech, and all programs used by all researchers</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
@@ -984,14 +996,14 @@
     </div>
     <div class="center" id="enigma_methods4" style="display: none;">
         <center>
-            <p><b></b></p>
+            <p><b>Brainhacks at Campus Biotech happen every year (pandemic provided)</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_4');">True<br /><br /></td>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_4');">True<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_4');">False<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_4');">False<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -1000,14 +1012,14 @@
     </div>
     <div class="center" id="enigma_methods5" style="display: none;">
         <center>
-            <p><b></b></p>
+            <p><b>The core developers of scikit-learn, Jupyter and binder all were actively researchers in neurosciences at some point</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_5');">True<br /><br /></td>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_5');">True<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_5');">False<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_5');">False<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -1016,14 +1028,14 @@
     </div>
     <div class="center" id="enigma_methods6" style="display: none;">
         <center>
-            <p><b></b></p>
+            <p><b>A standard approach to choose hyper-parameters of machine learning models is to use nested cross-validation</b></p>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_6');">True<br /><br /></td>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_6');">True<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_6');">False<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_6');">False<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
@@ -1036,10 +1048,16 @@
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
             <table style="width: 100%; table-layout: fixed;">
                 <tr>
-                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_7');">True<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_7');">PEP257<br /><br /></td>
                 </tr>
                 <tr>
-                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_7');">False<br /><br /></td>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_7');">PEP484<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Correct', '','td_load_methods_room_7');">PEP572<br /><br /></td>
+                </tr>
+                <tr>
+                    <td onClick="display_enigma_answer('Incorrect', '','td_load_methods_room_7');">PEP666<br /><br /></td>
                 </tr>
             </table>
             <p style="color:red"><b>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</b></p>
